@@ -6,12 +6,16 @@
 
 ## Users
 
-* [Users](users/users.md)
+* [GET /users](users/users.get.md)
+* [POST /users](users/users.post.md)
 
 ## Projects
 
-* [Projects](projects/projects.md)
+* [GET /projects](projects/projects.get.md)
+* [POST /projects](projects/projects.post.md)
 
 ## Tasks
 
-* [Tasks](tasks/tasks.md)
+* [GET /tasks](tasks/tasks.get.md)
+* [PUT /tasks](tasks/tasks.put.md)
+* [POST /tasks](tasks/tasks.post.md)
