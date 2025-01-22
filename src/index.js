@@ -1,8 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const path = require("path");
 const swaggerUi = require("swagger-ui-express");
+const path = require("path");
 const openApiSpec = require("../swagger/openapi.json");
 
 const app = express();
@@ -20,10 +20,10 @@ app.use("/api/projects", projectRoutes);
 app.use("/api/tasks", taskRoutes);
 app.use("/api/users", userRoutes);
 
-// Swagger UI
+// Serve Swagger UI
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(openApiSpec));
 
-// OpenAPI JSON
+// Serve the OpenAPI JSON
 app.get("/openapi.json", (req, res) => {
   res.sendFile(path.join(__dirname, "../swagger/openapi.json"));
 });
