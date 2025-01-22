@@ -1,5 +1,17 @@
 # Table of contents
 
-* [Users](README.md)
-* [Projects](projects.md)
-* [Tasks](tasks.md)
+## Getting started
+
+* [Welcome](README.md)
+
+## Users
+
+* [Users](users/users.md)
+
+## Projects
+
+* [Projects](projects/projects.md)
+
+## Tasks
+
+* [Tasks](tasks/tasks.md)
