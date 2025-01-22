@@ -4,8 +4,6 @@ icon: hand-wave
 
 # Welcome
 
-## Welcome to LightSwitch
-
 Welcome to **LightSwitch**, your ultimate SaaS solution for productivity management. With LightSwitch, you can seamlessly manage tasks, track progress, and boost your productivity.
 
 ### Get Started
