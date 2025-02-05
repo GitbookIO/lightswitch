@@ -5,8 +5,8 @@
   "compilerOptions": {
     "rootDir": "./dist/src",
     "paths": {
-      "lightswitch/*": ["dist/src/*"],
-      "lightswitch": ["dist/src/index.ts"],
+      "lightswitch-api/*": ["dist/src/*"],
+      "lightswitch-api": ["dist/src/index.ts"],
     },
     "noEmit": false,
     "declaration": true,

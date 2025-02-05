@@ -1,5 +1,5 @@
 {
-  "name": "lightswitch",
+  "name": "lightswitch-api",
   "version": "0.0.1-alpha.0",
   "description": "The official TypeScript library for the Lightswitch API",
   "author": "Lightswitch <dev-feedback@lightswitch.com>",
@@ -46,8 +46,8 @@
     "typescript": "^4.8.2"
   },
   "imports": {
-    "lightswitch": ".",
-    "lightswitch/*": "./src/*"
+    "lightswitch-api": ".",
+    "lightswitch-api/*": "./src/*"
   },
   "exports": {
     ".": {
