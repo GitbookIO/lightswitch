@@ -19,8 +19,7 @@ import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
 import { Project, ProjectCreateParams, ProjectListResponse, Projects } from './resources/projects';
-import { Task, TaskCreateParams, TaskListResponse, Tasks } from './resources/tasks';
-import { TasksTaskID, TasksTaskIDUpdateParams } from './resources/tasks-task-id';
+import { Task, TaskCreateParams, TaskListResponse, TaskUpdateParams, Tasks } from './resources/tasks';
 import { User, UserCreateParams, UserListResponse, Users } from './resources/users';
 import { readEnv } from './internal/utils/env';
 import { logger } from './internal/utils/log';
@@ -613,12 +612,10 @@ export class Lightswitch {
 
   projects: API.Projects = new API.Projects(this);
   tasks: API.Tasks = new API.Tasks(this);
-  tasksTaskID: API.TasksTaskID = new API.TasksTaskID(this);
   users: API.Users = new API.Users(this);
 }
 Lightswitch.Projects = Projects;
 Lightswitch.Tasks = Tasks;
-Lightswitch.TasksTaskID = TasksTaskID;
 Lightswitch.Users = Users;
 export declare namespace Lightswitch {
   export type RequestOptions = Opts.RequestOptions;
@@ -635,9 +632,8 @@ export declare namespace Lightswitch {
     type Task as Task,
     type TaskListResponse as TaskListResponse,
     type TaskCreateParams as TaskCreateParams,
+    type TaskUpdateParams as TaskUpdateParams,
   };
-
-  export { TasksTaskID as TasksTaskID, type TasksTaskIDUpdateParams as TasksTaskIDUpdateParams };
 
   export {
     Users as Users,
