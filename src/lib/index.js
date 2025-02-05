@@ -24,7 +24,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openApiSpec));
 
 // Serve the OpenAPI JSON
 app.get('/openapi.json', (req, res) => {
-  res.sendFile(path.join(__dirname, '../swagger/openapi.json'));
+  res.sendFile(path.join(__dirname, './swagger/openapi.json'));
 });
 
 // Export the app for Vercel or start the server locally
