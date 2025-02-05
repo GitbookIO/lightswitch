@@ -20,13 +20,8 @@ Types:
 Methods:
 
 - <code title="post /tasks">client.tasks.<a href="./src/resources/tasks.ts">create</a>({ ...params }) -> void</code>
+- <code title="put /tasks/{task_id}">client.tasks.<a href="./src/resources/tasks.ts">update</a>(taskID, { ...params }) -> Task</code>
 - <code title="get /tasks">client.tasks.<a href="./src/resources/tasks.ts">list</a>() -> TaskListResponse</code>
-
-# TasksTaskID
-
-Methods:
-
-- <code title="put /tasks/{task_id}">client.tasksTaskID.<a href="./src/resources/tasks-task-id.ts">update</a>(taskID, { ...params }) -> Task</code>
 
 # Users
 
