@@ -7,8 +7,8 @@ const config: JestConfigWithTsJest = {
     '^.+\\.(t|j)sx?$': ['@swc/jest', { sourceMaps: 'inline' }],
   },
   moduleNameMapper: {
-    '^lightswitch$': '<rootDir>/src/index.ts',
-    '^lightswitch/(.*)$': '<rootDir>/src/$1',
+    '^lightswitch-api$': '<rootDir>/src/index.ts',
+    '^lightswitch-api/(.*)$': '<rootDir>/src/$1',
   },
   modulePathIgnorePatterns: [
     '<rootDir>/ecosystem-tests/',

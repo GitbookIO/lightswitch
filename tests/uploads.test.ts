@@ -1,6 +1,6 @@
 import fs from 'fs';
-import type { ResponseLike } from 'lightswitch/internal/uploads';
-import { toFile } from 'lightswitch/uploads';
+import type { ResponseLike } from 'lightswitch-api/internal/uploads';
+import { toFile } from 'lightswitch-api/uploads';
 
 class MyClass {
   name: string = 'foo';
