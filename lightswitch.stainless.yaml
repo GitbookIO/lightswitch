@@ -1,0 +1,100 @@
+# yaml-language-server: $schema=https://app.stainlessapi.com/config.schema.json
+
+organization:
+  # Name of your organization or company, used to determine the name of the client
+  # and headings.
+  name: lightswitch
+  docs: https://docs.lightswitch.com
+  contact: dev-feedback@lightswitch.com
+
+# `targets` define the output targets and their customization options, such as
+# whether to emit the Node SDK and what it's package name should be.
+targets:
+  typescript:
+    package_name: lightswitch-api
+    production_repo: GitbookIO/lightswitch
+    publish:
+      npm: true
+
+# `client_settings` define settings for the API client, such as extra constructor
+# arguments (used for authentication), retry behavior, idempotency, etc.
+client_settings:
+  opts: {}
+
+# `environments` are a map of the name of the environment (e.g. "sandbox",
+# "production") to the corresponding url to use.
+environments:
+  production: https://lightswitch.gitbook.dev/api
+
+# `pagination` defines [pagination schemes] which provides a template to match
+# endpoints and generate next-page and auto-pagination helpers in the SDKs.
+pagination: []
+
+# `resources` define the structure and organziation for your API, such as how
+# methods and models are grouped together and accessed. See the [configuration
+# guide] for more information.
+#
+# [configuration guide]:
+#   https://app.stainlessapi.com/docs/guides/configure#resources
+resources:
+  projects:
+    # Configure the methods defined in this resource. Each key in the object is the
+    # name of the method and the value is either an endpoint (for example, `get /foo`)
+    # or an object with more detail.
+    #
+    # [reference]: https://app.stainlessapi.com/docs/reference/config#method
+    # Configure the models--named types--defined in the resource. Each key in the
+    # object is the name of the model and the value is either the name of a schema in
+    # `#/components/schemas` or an object with more detail.
+    #
+    # [reference]: https://app.stainlessapi.com/docs/reference/config#model
+    models:
+      project: Project
+    methods:
+      list: get /projects
+      create: post /projects
+
+  tasks:
+    models:
+      task: Task
+    methods:
+      list: get /tasks
+      create: post /tasks
+      update: put /tasks/{task_id}
+
+  users:
+    models:
+      user: User
+    methods:
+      list: get /users
+      create: post /users
+
+settings:
+  # All generated integration tests that hit the prism mock http server are marked
+  # as skipped. Removing this setting or setting it to false enables tests, but
+  # doing so may result in test failures due to bugs in the test server.
+  #
+  # [prism mock http server]: https://stoplight.io/open-source/prism
+  disable_mock_tests: true
+  license: Apache-2.0
+
+# `readme` is used to configure the code snippets that will be rendered in the
+# README.md of various SDKs. In particular, you can change the `headline`
+# snippet's endpoint and the arguments to call it with.
+readme:
+  example_requests:
+    default:
+      type: request
+      endpoint: get /projects
+      params: &ref_0 {}
+    headline:
+      type: request
+      endpoint: get /projects
+      params: *ref_0
+    pagination:
+      type: request
+      endpoint: get /projects
+      params: *ref_0
+
+openapi:
+  code_samples: 'mintlify'
