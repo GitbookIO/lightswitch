@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const swaggerUi = require('swagger-ui-express');
 const path = require('path');
-const openApiSpec = require('../swagger/openapi.json');
+const openApiSpec = require('./swagger/openapi.json');
 
 const app = express();
 
