@@ -24,10 +24,6 @@ Methods:
 
 # TasksTaskID
 
-Types:
-
-- <code><a href="./src/resources/tasks-task-id.ts">Task</a></code>
-
 Methods:
 
 - <code title="put /tasks/{task_id}">client.tasksTaskID.<a href="./src/resources/tasks-task-id.ts">update</a>(taskID, { ...params }) -> Task</code>

@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../resource';
-import * as TasksTaskIDAPI from './tasks-task-id';
 import { APIPromise } from '../api-promise';
 import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
@@ -36,7 +35,7 @@ export interface Task {
   title?: string;
 }
 
-export type TaskListResponse = Array<TasksTaskIDAPI.Task>;
+export type TaskListResponse = Array<Task>;
 
 export interface TaskCreateParams {
   id?: number;
