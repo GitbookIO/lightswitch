@@ -19,7 +19,7 @@ import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
 import { Project, ProjectCreateParams, ProjectListResponse, Projects } from './resources/projects';
-import { Task, TaskCreateParams, TaskListResponse, TaskUpdateParams, Tasks } from './resources/tasks';
+import { Task, TaskCreateParams, TaskListResponse, Tasks } from './resources/tasks';
 import { User, UserCreateParams, UserListResponse, Users } from './resources/users';
 import { readEnv } from './internal/utils/env';
 import { logger } from './internal/utils/log';
@@ -632,7 +632,6 @@ export declare namespace Lightswitch {
     type Task as Task,
     type TaskListResponse as TaskListResponse,
     type TaskCreateParams as TaskCreateParams,
-    type TaskUpdateParams as TaskUpdateParams,
   };
 
   export {

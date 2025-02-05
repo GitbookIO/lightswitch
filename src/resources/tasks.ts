@@ -18,17 +18,6 @@ export class Tasks extends APIResource {
   }
 
   /**
-   * Update a task
-   */
-  update(body: TaskUpdateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.put('/tasks', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
-  }
-
-  /**
    * Get all tasks
    */
   list(options?: RequestOptions): APIPromise<TaskListResponse> {
@@ -58,21 +47,10 @@ export interface TaskCreateParams {
   title?: string;
 }
 
-export interface TaskUpdateParams {
-  id?: number;
-
-  projectId?: number;
-
-  status?: string;
-
-  title?: string;
-}
-
 export declare namespace Tasks {
   export {
     type Task as Task,
     type TaskListResponse as TaskListResponse,
     type TaskCreateParams as TaskCreateParams,
-    type TaskUpdateParams as TaskUpdateParams,
   };
 }
