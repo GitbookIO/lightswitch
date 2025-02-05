@@ -10,7 +10,7 @@ module.exports = {
       {
         patterns: [
           {
-            group: ['lightswitch', 'lightswitch/*'],
+            group: ['lightswitch-api', 'lightswitch-api/*'],
             message: 'Use a relative import, not a package import.',
           },
         ],

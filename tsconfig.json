@@ -9,8 +9,8 @@
     "esModuleInterop": true,
     "baseUrl": "./",
     "paths": {
-      "lightswitch/*": ["src/*"],
-      "lightswitch": ["src/index.ts"]
+      "lightswitch-api/*": ["src/*"],
+      "lightswitch-api": ["src/index.ts"]
     },
     "noEmit": true,
 
