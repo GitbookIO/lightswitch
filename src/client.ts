@@ -20,7 +20,7 @@ import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
 import { Project, ProjectCreateParams, ProjectListResponse, Projects } from './resources/projects';
 import { Task, TaskCreateParams, TaskListResponse, Tasks } from './resources/tasks';
-import { Task as TasksTaskIdapiTask, TasksTaskID, TasksTaskIDUpdateParams } from './resources/tasks-task-id';
+import { TasksTaskID, TasksTaskIDUpdateParams } from './resources/tasks-task-id';
 import { User, UserCreateParams, UserListResponse, Users } from './resources/users';
 import { readEnv } from './internal/utils/env';
 import { logger } from './internal/utils/log';
@@ -637,11 +637,7 @@ export declare namespace Lightswitch {
     type TaskCreateParams as TaskCreateParams,
   };
 
-  export {
-    TasksTaskID as TasksTaskID,
-    type TasksTaskIdapiTask as Task,
-    type TasksTaskIDUpdateParams as TasksTaskIDUpdateParams,
-  };
+  export { TasksTaskID as TasksTaskID, type TasksTaskIDUpdateParams as TasksTaskIDUpdateParams };
 
   export {
     Users as Users,
