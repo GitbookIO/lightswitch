@@ -1,6 +1,6 @@
 {
   "name": "lightswitch",
-  "version": "0.0.1-alpha.0",
+  "version": "0.0.1-alpha.1",
   "description": "The official TypeScript library for the Lightswitch API",
   "author": "Lightswitch <dev-feedback@lightswitch.com>",
   "types": "dist/index.d.ts",
