@@ -4,6 +4,7 @@ import { APIResource } from '../resource';
 import { APIPromise } from '../api-promise';
 import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
+import { path } from '../internal/utils/path';
 
 export class Tasks extends APIResource {
   /**
@@ -21,7 +22,7 @@ export class Tasks extends APIResource {
    * Update a task
    */
   update(taskID: number, body: TaskUpdateParams, options?: RequestOptions): APIPromise<Task> {
-    return this._client.put(`/tasks/${taskID}`, { body, ...options });
+    return this._client.put(path`/tasks/${taskID}`, { body, ...options });
   }
 
   /**
