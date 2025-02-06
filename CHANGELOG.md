@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.1.0-alpha.2 (2025-02-06)
+
+Full Changelog: [v0.1.0-alpha.1...v0.1.0-alpha.2](https://github.com/GitbookIO/lightswitch/compare/v0.1.0-alpha.1...v0.1.0-alpha.2)
+
+### ⚠ BREAKING CHANGES
+
+* **client:** uri encode path parameters ([#11](https://github.com/GitbookIO/lightswitch/issues/11))
+
+### Bug Fixes
+
+* **client:** uri encode path parameters ([#11](https://github.com/GitbookIO/lightswitch/issues/11)) ([7c32167](https://github.com/GitbookIO/lightswitch/commit/7c32167b921124d79096039947371781eb74bf0e))
+
 ## 0.1.0-alpha.1 (2025-02-05)
 
 Full Changelog: [v0.0.1-alpha.0...v0.1.0-alpha.1](https://github.com/GitbookIO/lightswitch/compare/v0.0.1-alpha.0...v0.1.0-alpha.1)
