@@ -13,8 +13,6 @@ describe('instantiate client', () => {
   beforeEach(() => {
     jest.resetModules();
     process.env = { ...env };
-
-    console.warn = jest.fn();
   });
 
   afterEach(() => {
@@ -51,8 +49,15 @@ describe('instantiate client', () => {
     });
   });
   describe('logging', () => {
-    afterEach(() => {
+    const env = process.env;
+
+    beforeEach(() => {
+      process.env = { ...env };
       process.env['LIGHTSWITCH_LOG'] = undefined;
+    });
+
+    afterEach(() => {
+      process.env = env;
     });
 
     const forceAPIResponseForClient = async (client: Lightswitch) => {
@@ -61,6 +66,9 @@ describe('instantiate client', () => {
         Promise.resolve({
           response: new Response(),
           controller: new AbortController(),
+          requestLogID: 'log_000000',
+          retryOfRequestLogID: undefined,
+          startTime: Date.now(),
           options: {
             method: 'get',
             path: '/',
@@ -82,6 +90,11 @@ describe('instantiate client', () => {
 
       await forceAPIResponseForClient(client);
       expect(debugMock).toHaveBeenCalled();
+    });
+
+    test('default logLevel is warn', async () => {
+      const client = new Lightswitch({});
+      expect(client.logLevel).toBe('warn');
     });
 
     test('debug logs are skipped when log level is info', async () => {
@@ -110,9 +123,27 @@ describe('instantiate client', () => {
 
       process.env['LIGHTSWITCH_LOG'] = 'debug';
       const client = new Lightswitch({ logger: logger });
+      expect(client.logLevel).toBe('debug');
 
       await forceAPIResponseForClient(client);
       expect(debugMock).toHaveBeenCalled();
+    });
+
+    test('warn when env var level is invalid', async () => {
+      const warnMock = jest.fn();
+      const logger = {
+        debug: jest.fn(),
+        info: jest.fn(),
+        warn: warnMock,
+        error: jest.fn(),
+      };
+
+      process.env['LIGHTSWITCH_LOG'] = 'not a log level';
+      const client = new Lightswitch({ logger: logger });
+      expect(client.logLevel).toBe('warn');
+      expect(warnMock).toHaveBeenCalledWith(
+        'process.env[\'LIGHTSWITCH_LOG\'] was set to "not a log level", expected one of ["off","error","warn","info","debug"]',
+      );
     });
 
     test('client log level overrides env var', async () => {
@@ -129,6 +160,21 @@ describe('instantiate client', () => {
 
       await forceAPIResponseForClient(client);
       expect(debugMock).not.toHaveBeenCalled();
+    });
+
+    test('no warning logged for invalid env var level + valid client level', async () => {
+      const warnMock = jest.fn();
+      const logger = {
+        debug: jest.fn(),
+        info: jest.fn(),
+        warn: warnMock,
+        error: jest.fn(),
+      };
+
+      process.env['LIGHTSWITCH_LOG'] = 'not a log level';
+      const client = new Lightswitch({ logger: logger, logLevel: 'debug' });
+      expect(client.logLevel).toBe('debug');
+      expect(warnMock).not.toHaveBeenCalled();
     });
   });
 
