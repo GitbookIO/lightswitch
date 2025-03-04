@@ -1,6 +1,7 @@
 import fs from 'fs';
 import type { ResponseLike } from 'lightswitch-api/internal/to-file';
 import { toFile } from 'lightswitch-api/uploads';
+import { File } from 'node:buffer';
 
 class MyClass {
   name: string = 'foo';
