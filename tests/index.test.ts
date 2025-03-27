@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIPromise } from 'lightswitch-api/api-promise';
+import { APIPromise } from 'lightswitch-api/core/api-promise';
 
 import util from 'node:util';
 import Lightswitch from 'lightswitch-api';

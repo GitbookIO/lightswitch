@@ -1,5 +1,5 @@
 import { multipartFormRequestOptions, createForm } from 'lightswitch-api/internal/uploads';
-import { toFile } from 'lightswitch-api/uploads';
+import { toFile } from 'lightswitch-api/core/uploads';
 
 describe('form data validation', () => {
   test('valid values do not error', async () => {
