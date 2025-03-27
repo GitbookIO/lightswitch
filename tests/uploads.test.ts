@@ -1,6 +1,6 @@
 import fs from 'fs';
 import type { ResponseLike } from 'lightswitch-api/internal/to-file';
-import { toFile } from 'lightswitch-api/uploads';
+import { toFile } from 'lightswitch-api/core/uploads';
 import { File } from 'node:buffer';
 
 class MyClass {
@@ -97,7 +97,7 @@ describe('missing File error message', () => {
   });
 
   test('is thrown', async () => {
-    const uploads = await import('lightswitch-api/uploads');
+    const uploads = await import('lightswitch-api/core/uploads');
     await expect(
       uploads.toFile(mockResponse({ url: 'https://example.com/my/audio.mp3' })),
     ).rejects.toMatchInlineSnapshot(
