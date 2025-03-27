@@ -1,2 +1,4 @@
 configured_endpoints: 7
 openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/lightswitch%2Flightswitch-6dc2430da32f769677553172dba258ce0d23e8a260f803a5667d344159e8f57a.yml
+openapi_spec_hash: 70e4b7e54c5499041938279aaacf8c96
+config_hash: dd75502347a96f8c58e49c159b0b5917
