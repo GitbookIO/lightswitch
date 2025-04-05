@@ -6,7 +6,7 @@ This library provides convenient access to the Lightswitch REST API from server-
 
 The REST API documentation can be found on [docs.lightswitch.com](https://docs.lightswitch.com). The full API of this library can be found in [api.md](api.md).
 
-It is generated with [Stainless](https://www.stainlessapi.com/).
+It is generated with [Stainless](https://www.stainless.com/).
 
 ## Installation
 
@@ -133,8 +133,10 @@ Note that requests which time out will be [retried twice by default](#retries).
 ### Accessing raw Response data (e.g., headers)
 
 The "raw" `Response` returned by `fetch()` can be accessed through the `.asResponse()` method on the `APIPromise` type that all methods return.
+This method returns as soon as the headers for a successful response are received and does not consume the response body, so you are free to write custom parsing or streaming logic.
 
 You can also use the `.withResponse()` method to get the raw `Response` along with the parsed data.
+Unlike `.asResponse()` this method consumes the body, returning once it is parsed.
 
 <!-- prettier-ignore -->
 ```ts
@@ -147,6 +149,59 @@ console.log(response.statusText); // access the underlying Response object
 const { data: projects, response: raw } = await client.projects.list().withResponse();
 console.log(raw.headers.get('X-My-Header'));
 console.log(projects);
+```
+
+### Logging
+
+> [!IMPORTANT]
+> All log messages are intended for debugging only. The format and content of log messages
+> may change between releases.
+
+#### Log levels
+
+The log level can be configured in two ways:
+
+1. Via the `LIGHTSWITCH_LOG` environment variable
+2. Using the `logLevel` client option (overrides the environment variable if set)
+
+```ts
+import Lightswitch from 'lightswitch-api';
+
+const client = new Lightswitch({
+  logLevel: 'debug', // Show all log messages
+});
+```
+
+Available log levels, from most to least verbose:
+
+- `'debug'` - Show debug messages, info, warnings, and errors
+- `'info'` - Show info messages, warnings, and errors
+- `'warn'` - Show warnings and errors (default)
+- `'error'` - Show only errors
+- `'off'` - Disable all logging
+
+At the `'debug'` level, all HTTP requests and responses are logged, including headers and bodies.
+Some authentication-related headers are redacted, but sensitive data in request and response bodies
+may still be visible.
+
+#### Custom logger
+
+By default, this library logs to `globalThis.console`. You can also provide a custom logger.
+Most logging libraries are supported, including [pino](https://www.npmjs.com/package/pino), [winston](https://www.npmjs.com/package/winston), [bunyan](https://www.npmjs.com/package/bunyan), [consola](https://www.npmjs.com/package/consola), [signale](https://www.npmjs.com/package/signale), and [@std/log](https://jsr.io/@std/log). If your logger doesn't work, please open an issue.
+
+When providing a custom logger, the `logLevel` option still controls which messages are emitted, messages
+below the configured level will not be sent to your logger.
+
+```ts
+import Lightswitch from 'lightswitch-api';
+import pino from 'pino';
+
+const logger = pino();
+
+const client = new Lightswitch({
+  logger: logger.child({ name: 'Lightswitch' }),
+  logLevel: 'debug', // Send all messages to pino, allowing it to filter
+});
 ```
 
 ### Making custom/undocumented requests
@@ -208,32 +263,11 @@ globalThis.fetch = fetch;
 Or pass it to the client:
 
 ```ts
+import Lightswitch from 'lightswitch-api';
 import fetch from 'my-fetch';
 
 const client = new Lightswitch({ fetch });
 ```
-
-### Logging and middleware
-
-You may also provide a custom `fetch` function when instantiating the client,
-which can be used to inspect or alter the `Request` or `Response` before/after each request:
-
-```ts
-import { fetch } from 'undici'; // as one example
-import Lightswitch from 'lightswitch-api';
-
-const client = new Lightswitch({
-  fetch: async (url: RequestInfo, init?: RequestInit): Promise<Response> => {
-    console.log('About to make a request', url, init);
-    const response = await fetch(url, init);
-    console.log('Got response', response);
-    return response;
-  },
-});
-```
-
-Note that if given a `LIGHTSWITCH_LOG=debug` environment variable, this library will log all requests and responses automatically.
-This is intended for debugging purposes only and may change in the future without notice.
 
 ### Fetch options
 
